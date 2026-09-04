@@ -1,6 +1,5 @@
 # AtliQ Hardwares - Sales & Profitability Analytics
 
-## Overview
 An end-to-end data analytics project transforming raw transactional sales records into an interactive executive Power BI report. The analysis evaluates revenue drivers, profitability metrics, and regional performance variations for **AtliQ Hardwares**.
 
 ---
@@ -41,7 +40,8 @@ FROM transactions
 INNER JOIN date ON transactions.order_date = date.date 
 WHERE date.year = 2020 
   AND transactions.market_code = "Mark001";
-```
+Core DAX Measures & Target Parameters
+Code snippet
 // Core Measures
 Revenue = SUM('sales transactions'[sales_amount])
 
@@ -62,3 +62,18 @@ DIVIDE([Total Profit Margin], CALCULATE([Total Profit Margin], ALL('sales produc
 Profit Target = GENERATESERIES(-0.05, 0.15, 0.01)
 
 Target Diff = [Profit Margin%] - 'Profit Target'[Profit Target Value]
+Dashboard Visual Features
+Executive KPI Cards: Real-time metrics tracking Revenue, Profit Margin, Sales Quantity, and Margin %.
+
+Regional Breakdown: Bar/column visuals highlighting top revenue-generating markets (Delhi NCR, Mumbai) vs. profit margins.
+
+What-If Target Slider: Dynamic parameter (GENERATESERIES) allowing stakeholders to adjust profit margin expectations and instantly spot underperforming zones.
+
+Top 5 Customers & Products: Visual ranking of top clients and SKUs by revenue contribution percentage.
+
+Key Business Insights
+Revenue Concentration: Delhi NCR and Mumbai represent the primary revenue drivers for AtliQ Hardwares.
+
+Volume vs. Profitability: High sales volume in certain regions does not guarantee high profitability due to lower unit margins.
+
+Target Sensitivity: Adjusting the Profit Target slider above 3% highlights regional markets operating below threshold profitability.
