@@ -40,9 +40,11 @@ FROM transactions
 INNER JOIN date ON transactions.order_date = date.date 
 WHERE date.year = 2020 
   AND transactions.market_code = "Mark001";
-Core DAX Measures & Target Parameters
-Code snippet
-// Core Measures
+```
+
+##Core DAX Measures & Target Parameters
+```sql
+-- Core Measures
 Revenue = SUM('sales transactions'[sales_amount])
 
 Sales Qty = SUM('sales transactions'[sales_qty])
@@ -51,18 +53,20 @@ Total Profit Margin = SUM('sales transactions'[profit_margin])
 
 Profit Margin% = DIVIDE([Total Profit Margin], [Revenue], 0)
 
-// Contribution Calculations
+-- Contribution Calculations
 Revenue Contribution % = 
 DIVIDE([Revenue], CALCULATE([Revenue], ALL('sales products'), ALL('sales customers'), ALL('sales markets')))
 
 Profit Margin Contribution % = 
 DIVIDE([Total Profit Margin], CALCULATE([Total Profit Margin], ALL('sales products'), ALL('sales customers'), ALL('sales markets')))
 
-// Dynamic What-If Parameter & Target Variance
+-- Dynamic What-If Parameter & Target Variance
 Profit Target = GENERATESERIES(-0.05, 0.15, 0.01)
 
 Target Diff = [Profit Margin%] - 'Profit Target'[Profit Target Value]
-Dashboard Visual Features
+```
+
+## Dashboard Visual Features
 Executive KPI Cards: Real-time metrics tracking Revenue, Profit Margin, Sales Quantity, and Margin %.
 
 Regional Breakdown: Bar/column visuals highlighting top revenue-generating markets (Delhi NCR, Mumbai) vs. profit margins.
@@ -71,7 +75,7 @@ What-If Target Slider: Dynamic parameter (GENERATESERIES) allowing stakeholders 
 
 Top 5 Customers & Products: Visual ranking of top clients and SKUs by revenue contribution percentage.
 
-Key Business Insights
+## Key Business Insights
 Revenue Concentration: Delhi NCR and Mumbai represent the primary revenue drivers for AtliQ Hardwares.
 
 Volume vs. Profitability: High sales volume in certain regions does not guarantee high profitability due to lower unit margins.
